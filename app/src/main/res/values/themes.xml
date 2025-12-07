@@ -1,0 +1,13 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Main App Theme -->
+    <style name="Theme.CurrencyConverter" parent="Theme.Material3.DayNight.NoActionBar">
+
+        <!-- Enable Toolbar menu icons -->
+        <item name="actionBarPopupTheme">@style/ThemeOverlay.Material3.Light</item>
+        <item name="toolbarStyle">@style/Widget.Material3.Toolbar</item>
+
+
+    </style>
+
+</resources>

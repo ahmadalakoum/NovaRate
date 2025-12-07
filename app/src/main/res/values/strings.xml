@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">NovaRate</string>
+    <string-array name="currencies">
+        <item>USD</item>
+        <item>EUR</item>
+        <item>GBP</item>
+        <item>LBP</item>
+    </string-array>
+</resources>
