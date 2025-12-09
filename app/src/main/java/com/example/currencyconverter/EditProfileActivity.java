@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.appbar.MaterialToolbar;
@@ -59,22 +60,31 @@ public class EditProfileActivity extends AppCompatActivity {
                 Toast.makeText(this, "All fields must be filled", Toast.LENGTH_SHORT).show();
                 return;
             }
+            //show an alert dialog for the user to confirm changes
+            AlertDialog.Builder builder = new AlertDialog.Builder(EditProfileActivity.this);
+            builder.setTitle("Save Changes");
+            builder.setMessage("Are you sure you want to save changes?");
+            builder.setPositiveButton("Yes", (dialog, which) -> {
 
-            // update data inside object
-            u.username = newU;
-            u.email = newE;
-            u.country = newC;
+                // update data inside object
+                u.username = newU;
+                u.email = newE;
+                u.country = newC;
 
-            // update in DB
-            dao.updateUser(u);
+                // update in DB
+                dao.updateUser(u);
 
-            Toast.makeText(this, "Profile updated!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Profile updated!", Toast.LENGTH_SHORT).show();
 
-            // go back to main converter screen with updated username
-            Intent i = new Intent(EditProfileActivity.this, CurrencyConverterActivity.class);
-            i.putExtra("username", u.username);
-            startActivity(i);
-            finish();
+                // go back to main converter screen with updated username
+                Intent i = new Intent(EditProfileActivity.this, CurrencyConverterActivity.class);
+                i.putExtra("username", u.username);
+                startActivity(i);
+                finish();
+            });
+            builder.setNegativeButton("No", null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
         });
 
     }

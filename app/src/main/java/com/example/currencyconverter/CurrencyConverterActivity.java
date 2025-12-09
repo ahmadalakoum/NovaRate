@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
@@ -134,9 +135,20 @@ public class CurrencyConverterActivity extends AppCompatActivity {
         }
 
         if(id == R.id.nav_logout){
-            startActivity(new Intent(this, MainActivity.class));
-            finish();
+            //show an alert dialog for the user to confirm logout
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Logout");
+            builder.setMessage("Are you sure you want to logout?");
+            builder.setPositiveButton("Yes", (dialog, which) -> {
+                //go back to login page
+                startActivity(new Intent(this, MainActivity.class));
+                finish();
+            });
+            builder.setNegativeButton("No", null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
             return true;
+
         }
 
         return super.onOptionsItemSelected(item);
