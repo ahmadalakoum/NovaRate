@@ -1,6 +1,7 @@
 package com.example.currencyconverter;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -140,6 +141,11 @@ public class CurrencyConverterActivity extends AppCompatActivity {
             builder.setTitle("Logout");
             builder.setMessage("Are you sure you want to logout?");
             builder.setPositiveButton("Yes", (dialog, which) -> {
+                SharedPreferences sp = getSharedPreferences("login_prefs",MODE_PRIVATE);
+                SharedPreferences.Editor editor = sp.edit();
+                editor.remove("username");
+                editor.putBoolean("stayLogged",false);
+                editor.apply();
                 //go back to login page
                 startActivity(new Intent(this, MainActivity.class));
                 finish();
